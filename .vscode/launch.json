@@ -1,0 +1,21 @@
+{
+    "configurations": [
+        {
+            "name": "cuda nvcc 最简编译",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe", // 运行已经编译好的文件
+            "args": [
+                "/C",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "&",
+                "pause"
+            ], // 运行参数设置
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}", // 运行目标的工作目录
+            "preLaunchTask": "nvcc", // 运行可执行文件前先执行编译
+            "environment": [],
+            "console": "externalTerminal", // 独立控制终端运行
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "version": "2.0.0",
+    "command": "nvcc",
+    "args": [
+        "-ccbin",
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX86\\x64",
+        "${file}",
+        "-o",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+    ] // 编译命令参数，编译程序地址请改成运行机上相应程序地址
+}
