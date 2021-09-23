@@ -1,0 +1,8 @@
+# IGNORED FILES
+.vscode/settings.json
+files/*.h
+
+# IGNORED SUFFIX
+*.exe
+*.exp
+*.lib
