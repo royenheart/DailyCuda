@@ -25,3 +25,6 @@ nvprof的后继者，用于检测Kernel Timeline进行GPU，Cuda程序性能分�
 [Nsight Systems](#nsight-systems)用于检测Kernel整体的运行，Nsight Compute可以提供单个Kernel内部的运行情况，比如Kernel的SASS汇编，运行时间等
 
 [下载地址](https://developer.nvidia.com/nsight-compute)
+
+- - -
+最后编辑于 2021.09.26
