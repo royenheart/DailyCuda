@@ -21,8 +21,7 @@ __global__ void matrixCalMul(float *A, float *B, float *C) {
 }
 
 int main(int argv, char **argc) {
-    ErrPool errPool;
-    
+
     /* 声明矩阵大小 */
     int xA = 1<<4;
     int yA = 1<<8;
@@ -57,13 +56,13 @@ int main(int argv, char **argc) {
     float *GmA = NULL;
     float *GmB = NULL;
     float *GmC = NULL;
-    errPool.addErr(cudaMalloc(&GmA,sizeA),FAILEDALLOCATEDEVICE);
-    errPool.addErr(cudaMalloc(&GmB,sizeB),FAILEDALLOCATEDEVICE);
-    errPool.addErr(cudaMalloc(&GmC,sizeC),FAILEDALLOCATEDEVICE);
+    cudaMalloc(&GmA,sizeA);
+    cudaMalloc(&GmB,sizeB);
+    cudaMalloc(&GmC,sizeC);
 
     /* 主机数据转移至设备 */
-    errPool.addErr(cudaMemcpy(GmA,mA,sizeA,cudaMemcpyHostToDevice),FAILEDTRANSFERHtD);
-    errPool.addErr(cudaMemcpy(GmB,mB,sizeB,cudaMemcpyHostToDevice),FAILEDTRANSFERHtD);
+    cudaMemcpy(GmA,mA,sizeA,cudaMemcpyHostToDevice);
+    cudaMemcpy(GmB,mB,sizeB,cudaMemcpyHostToDevice);
 
     /* 声明线程块和线程空间 */
     dim3 blocksPerGrid(yA,yA);
@@ -77,7 +76,7 @@ int main(int argv, char **argc) {
     printf("Total execute time on GPU is %lfs\n",end-start);
 
     /* 设备数据转移至主机 */
-    errPool.addErr(cudaMemcpy(mC,GmC,sizeC,cudaMemcpyDeviceToHost),FAILEDTRANSFERDtH);
+    cudaMemcpy(mC,GmC,sizeC,cudaMemcpyDeviceToHost);
 
     /* 释放主机内存空间 */
     free(mA);

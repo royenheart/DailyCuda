@@ -19,7 +19,6 @@ __global__ void matrixCalAdd(float *A, float *B, float *C) {
 }
 
 int main() {
-    ErrPool errPool;
 
     // 声明矩阵大小
     int n = 1<<12;
@@ -47,13 +46,13 @@ int main() {
     float *matrixGpuD = NULL;
     float *matrixGpuE = NULL;
     float *matrixGpuF = NULL;
-    errPool.addErr(cudaMalloc(&matrixGpuD, actualSize),FAILEDALLOCATEDEVICE);
-    errPool.addErr(cudaMalloc(&matrixGpuE, actualSize),FAILEDALLOCATEDEVICE);
-    errPool.addErr(cudaMalloc(&matrixGpuF, actualSize),FAILEDALLOCATEDEVICE);
+    cudaMalloc(&matrixGpuD, actualSize);
+    cudaMalloc(&matrixGpuE, actualSize);
+    cudaMalloc(&matrixGpuF, actualSize);
 
     // 主机数据转移至设备
-    errPool.addErr(cudaMemcpy(matrixGpuD, matrixCpuA, actualSize, cudaMemcpyHostToDevice),FAILEDTRANSFERHtD);
-    errPool.addErr(cudaMemcpy(matrixGpuE, matrixCpuB, actualSize, cudaMemcpyHostToDevice),FAILEDTRANSFERHtD);
+    cudaMemcpy(matrixGpuD, matrixCpuA, actualSize, cudaMemcpyHostToDevice);
+    cudaMemcpy(matrixGpuE, matrixCpuB, actualSize, cudaMemcpyHostToDevice);
 
     // 声明使用的线程/线程块和线程块数
     int threadsPerBlock = 256;
@@ -67,7 +66,7 @@ int main() {
     printf("Total execute time on GPU is %lfs\n",end-start);
     
     // 核函数计算完毕后从设备内存转移数据至主机
-    errPool.addErr(cudaMemcpy(matrixCpuC, matrixGpuF, actualSize, cudaMemcpyDeviceToHost),FAILEDTRANSFERDtH);
+    cudaMemcpy(matrixCpuC, matrixGpuF, actualSize, cudaMemcpyDeviceToHost);
 
     // 检查错误，精度要求为1e-5
     for (int i = 0; i < size; i++) {

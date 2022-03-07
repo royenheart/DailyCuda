@@ -1,5 +1,6 @@
 # IGNORED FILES
 .vscode/settings.json
+.vs
 CudaToolkitDocs/Books/*
 Materials
 

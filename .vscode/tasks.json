@@ -3,14 +3,30 @@
     // 使用nvcc进行编译
     // 使用MSVC编译器（mingw不支持），cl.exe为MSVC中用于windows平台上进行C/C++程序的编译
     "version": "2.0.0",
-    "command": "nvcc",
-    "args": [
-        "-ccbin",
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64",
-        "-I",
-        "${workspaceFolder}/Headers",
-        "${file}",
-        "-o",
-        "${fileDirname}\\${fileBasenameNoExtension}.exe"
-    ]
+    "tasks": [
+        {
+            "label": "MkdirProgram",
+            "type": "shell",
+            "command": "${workspaceFolder}/MkProgramDir.sh",
+            "args": [
+                "${workspaceFolder}/out/${fileBasenameNoExtension}"
+            ]
+        },
+        {
+            "label": "BuildWithNVCC",
+            "type": "shell",
+            "command": "nvcc",
+            "args": [
+                "-ccbin",
+                "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64",
+                "-I",
+                "${workspaceFolder}/Headers",
+                "${file}",
+                "-o",
+                "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe"
+            ],
+            "dependsOn": ["MkdirProgram"] // 设置依赖，首先创建程序存放目录
+        }
+    ],
+
 }

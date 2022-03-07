@@ -4,18 +4,18 @@
             "name": "cuda nvcc",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe", // 运行已经编译好的文件
+            "program": "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe", // 运行已经编译好的文件
             "args": [
                 "/C",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe",
                 "&",
                 "pause"
             ], // 运行参数设置
             "stopAtEntry": false,
-            "cwd": "${fileDirname}", // 运行目标的工作目录
-            "preLaunchTask": "nvcc", // 运行可执行文件前先执行编译
+            "cwd": "${workspaceFolder}/out/${fileBasenameNoExtension}", // 运行目标的工作目录
+            "preLaunchTask": "BuildWithNVCC", // 运行可执行文件前先执行编译
             "environment": [],
-            "console": "externalTerminal", // 独立控制终端运行
+            "console": "integratedTerminal", // 内置终端
         }
     ]
 }
