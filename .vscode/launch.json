@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "cuda nvcc 最简编译",
+            "name": "cuda nvcc",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}.exe", // 运行已经编译好的文件

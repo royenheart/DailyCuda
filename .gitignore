@@ -1,7 +1,7 @@
 # IGNORED FILES
 .vscode/settings.json
-files/*.h
-CUDA_TOOLKIT_DOCUMENTATION/BOOKS/*
+CudaToolkitDocs/Books/*
+Materials
 
 # IGNORED SUFFIX
 *.exe
