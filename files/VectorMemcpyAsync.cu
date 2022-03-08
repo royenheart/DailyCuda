@@ -40,8 +40,8 @@ int main(int argc, char *args[]) {
     cudaMalloc((void**)&d_c, bytes);
     
     // 拷贝host数据到device
-    cudaMemcpy((void*)d_a, (void*)a, bytes, cudaMemcpyHostToDevice);
-    cudaMemcpy((void*)d_b, (void*)b, bytes, cudaMemcpyHostToDevice);
+    cudaMemcpyAsync((void*)d_a, (void*)a, bytes, cudaMemcpyHostToDevice);
+    cudaMemcpyAsync((void*)d_b, (void*)b, bytes, cudaMemcpyHostToDevice);
     
     // 进行kernel配置
     dim3 blockSize(256);
@@ -51,7 +51,7 @@ int main(int argc, char *args[]) {
     VectorPlus<<<gridSize, blockSize>>>(d_a, d_b, d_c, N);
 
     // 将device数据拷贝至host
-    cudaMemcpy((void*)c, (void*)d_c, bytes, cudaMemcpyDeviceToHost);
+    cudaMemcpyAsync((void*)c, (void*)d_c, bytes, cudaMemcpyDeviceToHost);
 
     // 数据监测
     int isRight = 1;

@@ -21,5 +21,6 @@ int main(char* args[], int argc) {
         printf("Max threads per EM: %d\n", DevProp.maxThreadsPerMultiProcessor);
         printf("Max threads per SM: %d\n", DevProp.maxThreadsPerMultiProcessor / 32);
     }
+
     return 0;
 }
