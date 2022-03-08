@@ -8,7 +8,6 @@ int main(char* args[], int argc) {
     // 设置cudaDeviceProp结构读取GPU信息
     cudaDeviceProp DevProp;
     
-    
     int count;
 
     cudaGetDeviceCount(&count);
