@@ -21,10 +21,39 @@
                 "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\bin\\HostX64\\x64",
                 "-I",
                 "${workspaceFolder}/Headers",
+                "-L",
+                "${workspaceFolder}/lib",
                 "${file}",
                 "-o",
                 "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe"
             ],
+            "dependsOn": ["MkdirProgram"] // 设置依赖，首先创建程序存放目录
+        },
+        {
+            "label": "BuildWithG++",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-I",
+                "${workspaceFolder}/Headers",
+                "-pthread",
+                "-std=c++11",
+                "-o",
+                "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe"
+            ],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": ["relative", "${workspaceRoot}"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            },
             "dependsOn": ["MkdirProgram"] // 设置依赖，首先创建程序存放目录
         }
     ],

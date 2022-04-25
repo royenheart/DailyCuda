@@ -16,6 +16,32 @@
             "preLaunchTask": "BuildWithNVCC", // 运行可执行文件前先执行编译
             "environment": [],
             "console": "integratedTerminal", // 内置终端
-        }
+        },
+        {  
+            "name": "c++(gdb)LaunchWithThread",  
+            "type": "cppdbg",      
+            "request": "launch",
+            "program": "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe",
+            "args": [
+                "/C",
+                "${workspaceFolder}/out/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe",
+                "&",
+                "pause"
+            ],
+            "stopAtEntry": false, 
+            "cwd": "${workspaceFolder}/out/${fileBasenameNoExtension}", // 调试程序时的工作目录，一般为${workspaceRoot}即代码所在目录  
+            "environment": [],  
+            "console": "integratedTerminal",
+            "MIMode": "gdb",  
+            "miDebuggerPath": "D:\\mingw\\mingw64\\bin\\gdb.exe", // miDebugger的路径，注意这里要与MinGw的路径对应  
+            "preLaunchTask": "BuildWithG++", // 调试会话开始前执行的任务，一般为编译程序，c++为g++, c为gcc  
+            "setupCommands": [  
+                {   
+					"description": "Enable pretty-printing for gdb",  
+                    "text": "-enable-pretty-printing",  
+                    "ignoreFailures": true  
+                }  
+            ]  
+        }  
     ]
 }

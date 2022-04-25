@@ -24,7 +24,8 @@
     // 文件与语言关联
     "files.associations": {
         "cstdio": "cpp",
-        "*.cu": "cpp"
+        "*.cu": "cpp",
+        "thread": "cpp"
     },
     // 自动配置cmake项目
     "cmake.configureOnOpen": false
